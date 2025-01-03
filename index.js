@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const cors = require('cors'); // Import cors
 
 const connectDb = require('./db.js');
-const swaggerSetup = require('./swagger'); // Import Swagger setup
+const swaggerSetup = require('./swagger.js'); // Import Swagger setup
 
 // Connect to MongoDB
 connectDb();
@@ -27,14 +27,14 @@ app.get("/", (req, res) => {
 });
 
 // User routes
-const userRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/authRoutes.js");
 app.use("/api/users", userRoutes);
 
-const inventoryRoutes = require("./routes/inventoryRoutes");
+const inventoryRoutes = require("./routes/inventoryRoutes.js");
 app.use("/api/inventory", inventoryRoutes);
 
 // Request routes
-const requestRoutes = require("./routes/requestRoutes");
+const requestRoutes = require("./routes/requestRoutes.js");
 app.use("/api/requests", requestRoutes);
 
 // Error handling middleware

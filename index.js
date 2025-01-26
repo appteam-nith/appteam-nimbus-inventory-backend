@@ -1,12 +1,12 @@
-require('dotenv').config(); // This loads the environment variables from the .env file
+require("dotenv").config(); // This loads the environment variables from the .env file
 const express = require("express");
-const http = require('http'); // Required to create the server
+const http = require("http"); // Required to create the server
 const app = express();
 const port = process.env.PORT || 3000;
-const cors = require('cors'); // Import cors
+const cors = require("cors"); // Import cors
 
-const connectDb = require('./db.js');
-const swaggerSetup = require('./swagger.js'); // Import Swagger setup
+const connectDb = require("./db.js");
+const swaggerSetup = require("./swagger.js"); // Import Swagger setup
 
 // Connect to MongoDB
 connectDb();
@@ -37,10 +37,14 @@ app.use("/api/inventory", inventoryRoutes);
 const requestRoutes = require("./routes/requestRoutes.js");
 app.use("/api/requests", requestRoutes);
 
+// Special request routes
+const specialRequestRoutes = require("./routes/specialRequestRoutes.js");
+app.use("/api/special-requests", specialRequestRoutes);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err);
-  res.status(500).json({ message: 'Something went wrong' });
+  res.status(500).json({ message: "Something went wrong" });
 });
 
 // Start the server
